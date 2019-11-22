@@ -1,58 +1,148 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="wrap mt-3 mx-auto">
+    <div class="header">
+      <p>{{ fedBack }}</p>
+    </div>
+    <div class="body">
+      <div class="body-top">
+        <div class="body-num">
+          <div class="num-top">
+            <div
+              class="button"
+              v-for="(item, k) in numTopData"
+              :key="k"
+              @click="actBtn(item)"
+            >{{ item }}</div>
+          </div>
+          <div class="num-bottom">
+            <div
+              class="button"
+              v-for="(item, k) in numBottomData"
+              :key="k"
+              @click="actBtn(item)"
+            >{{ item }}</div>
+          </div>
+        </div>
+        <div class="body-operator">
+          <div
+            class="button bg-buttom"
+            v-for="(item, k) in operatorData"
+            :key="k"
+            @click="actBtn(item)"
+          >{{ item }}</div>
+        </div>
+      </div>
+      <div class="body-bottom mt-3">
+        <div class="button" @click="actBtn(bodyBottomData.DxAC)">{{ bodyBottomData.DxAC }}</div>
+        <div class="button" @click="actBtn(bodyBottomData.DxDel)">{{ bodyBottomData.DxDel }}</div>
+        <div
+          class="button bg-buttom-eqrul flexGrow text-right pr-4"
+          @click="actBtn(bodyBottomData.DxEqual)">{{ bodyBottomData.DxEqual }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
-  },
-};
-</script>
+<script type="text/javascript" src="./index.js"></script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
+$primary: #062145;
+$dark: #041936;
+$white: #fff;
+
+.button {
+  width: 4.5rem;
+  max-height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  font-size: 1.3rem;
+  color: $white;
+  cursor: pointer;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.bg-buttom {
+  background-color: $dark;
+  border-radius: 16px;
+  margin: 1.2rem 0rem;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.bg-buttom-eqrul {
+  background: transparent linear-gradient(90deg, #00c4ff 0%, #6c00ff 100%) 0% 0%
+    no-repeat padding-box;
+  border-radius: 16px;
 }
-a {
-  color: #42b983;
+
+.flexGrow {
+  flex: 2;
+}
+
+.wrap {
+  width: 21.85rem;
+  height: 34rem;
+  background-color: $primary;
+  box-shadow: 0px 20px 40px #00000066;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+.header {
+  width: 100%;
+  height: 6.8125rem;
+  background: $dark 0% 0% no-repeat padding-box;
+  border-radius: 20px 20px 0px 0px;
+  display: flex;
+  align-items: flex-end;
+
+  p {
+    width: 100%;
+    color: $white;
+    font-size: 3rem;
+    text-align: right;
+    padding-right: 1.4rem;
+  }
+}
+
+.body {
+  width: 100%;
+  height: 25.9975rem;
+  border-radius: 0px 0px 20px 20px;
+}
+
+.body-top {
+  width: 100%;
+  height: 80%;
+  display: flex;
+
+  .body-num {
+    width: 75%;
+    height: 100%;
+
+    .num-top {
+      height: 75%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .num-bottom {
+      height: 25%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .body-operator {
+    justify-content: 100%;
+  }
+}
+
+.body-bottom {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  padding-left: 1.3rem;
+  padding-right: 0.9rem;
 }
 </style>
