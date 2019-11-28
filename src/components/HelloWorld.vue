@@ -1,6 +1,7 @@
 <template>
   <div class="wrap mt-3 mx-auto">
     <div class="header">
+      <p class="expression">{{ expression }}</p>
       <p>{{ fedBack }}</p>
     </div>
     <div class="body">
@@ -28,16 +29,16 @@
             class="button bg-buttom"
             v-for="(item, k) in operatorData"
             :key="k"
-            @click="actBtn(item)"
+            @click="actOperator(item)"
           >{{ item }}</div>
         </div>
       </div>
       <div class="body-bottom mt-3">
-        <div class="button" @click="actBtn(bodyBottomData.DxAC)">{{ bodyBottomData.DxAC }}</div>
-        <div class="button" @click="actBtn(bodyBottomData.DxDel)">{{ bodyBottomData.DxDel }}</div>
+        <div class="button" @click="actZero()">{{ bodyBottomData.DxAC }}</div>
+        <div class="button" @click="actBack()">{{ bodyBottomData.DxDel }}</div>
         <div
           class="button bg-buttom-eqrul flexGrow text-right pr-4"
-          @click="actBtn(bodyBottomData.DxEqual)">{{ bodyBottomData.DxEqual }}</div>
+          @click="actEqual()">{{ bodyBottomData.DxEqual }}</div>
       </div>
     </div>
   </div>
@@ -79,7 +80,7 @@ $white: #fff;
 
 .wrap {
   width: 21.85rem;
-  height: 34rem;
+  height: 38rem;
   background-color: $primary;
   box-shadow: 0px 20px 40px #00000066;
   border-radius: 20px;
@@ -88,18 +89,26 @@ $white: #fff;
 
 .header {
   width: 100%;
-  height: 6.8125rem;
+  height: 10.8125rem;
   background: $dark 0% 0% no-repeat padding-box;
   border-radius: 20px 20px 0px 0px;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: right;
+  padding-right: 1.4rem;
+
+  .expression {
+    width: 100%;
+    color: $white;
+    font-size: 2rem;
+    margin-bottom: 0;
+  }
 
   p {
     width: 100%;
     color: $white;
-    font-size: 3rem;
-    text-align: right;
-    padding-right: 1.4rem;
+    font-size: 3.5rem;
   }
 }
 
